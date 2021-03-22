@@ -11,8 +11,8 @@
 
     var meta = document.getElementsByTagName("meta");
     var meta_info;
-    for (var y = 0; y < 3; y++) {
-        meta_info += "name: <b>" + meta[y].name + "</b> and content: <b>" + meta[y].content + "</b><br>";
+    for (var y = 0; y < 10; y++) {
+        meta_info += meta[y].name + " : " + meta[y].content;
     }
-    console.log(meta_info)
+    console.log(meta_info);
 })();
