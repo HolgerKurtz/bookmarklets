@@ -1,18 +1,24 @@
 (function () {
-    let tag = ['h1', 'h2', 'h3', 'p', 'ul', 'ol', 'li'];
-    console.log(tag);
+    var meta_info = {};
+    let tag = ['title', 'h1', 'h2', 'h3', 'p', 'ul', 'ol', 'li'];
+
     for (var i = 0; i < tag.length; i++) {
         var elts = document.getElementsByTagName(tag[i]);
-
+        var list = [];
         for (var x = 0; x < elts.length; x++) {
-            elts[x].innerHTML += " (" + tag[i] + ")"
+            list.push(elts[x].innerText);
+            elts[x].innerHTML += " (" + tag[i] + ")";
         }
+        meta_info[tag[i]] = list;
     }
 
     var meta = document.getElementsByTagName("meta");
-    var meta_info;
+
     for (var y = 0; y < 10; y++) {
-        meta_info += meta[y].name + " : " + meta[y].content;
+        if (typeof meta[y] !== "undefined") {
+            meta_info[meta[y].name] = meta[y].content;
+        }
+
     }
     console.log(meta_info);
 })();
