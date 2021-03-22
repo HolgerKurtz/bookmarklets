@@ -9,25 +9,29 @@
 </head>
 
 <body>
-    <h1>Bookmarklet Stuff</h1>
-    <h2>Das Hier ist auch interessant</h2>
-    <p>
-        Now there is a paragraph. But I don't like it.
-        Let's <a
-            href="javascript:(function(){var script=document.createElement('script');script.src='https://cdn.jsdelivr.net/gh/HolgerKurtz/bookmarklets@latest/bookmarklet.js';document.body.appendChild(script);})();">delete
-            it</a>
-    </p>
-    <ul>
-        <li>Test 1</li>
-        <li>Test 2</li>
-    </ul>
-    <h2>Bla bla</h2>
-    <h3>oh ja das ist gut</h3>
-
+    <h1>Bookmarklet Anleitung </h1>
+    <p>Liste mit Booklets, die ich entweder selbst programmiert habe, oder nutze.</p>
+    <p>Wie kann ich ein JavaScript Booklet hinzufügen? </br>Füge den Code als URL dem Lesezeichen hinzu. </p>
     <ol>
-        <li>Test 1</li>
-        <li>Test 2</li>
+        <li>
+            <a
+                href="javascript:(function(){var script=document.createElement('script');script.src='https://cdn.jsdelivr.net/gh/HolgerKurtz/bookmarklets@latest/bookmarklet.js';document.body.appendChild(script);})();">
+                <h2> HTML Tags in Webseite</h2>
+            </a>
+            <code>javascript:(function(){var script=document.createElement('script');script.src='https://cdn.jsdelivr.net/gh/HolgerKurtz/bookmarklets@latest/bookmarklet.js';document.body.appendChild(script);})();</code>
+        </li>
+        <li>
+            <h2>Platzhalter</h2>
+        </li>
     </ol>
+    <footer>
+        <h3>INFO: </h3>
+        <p>Die .js Datein werden bei jsdelivery gehostet, da dort – anders als bei rawgit – die neueste Version
+            verwendet wird und nicht die gecachete. raw.github wäre auch möglich, aber Browser blockieren die Ausführung
+            der Datei, da Content Type falsch ist.</p>
+    </footer>
+
+
 </body>
 
 </html>

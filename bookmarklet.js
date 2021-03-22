@@ -8,4 +8,11 @@
             elts[x].innerHTML += " (" + tag[i] + ")"
         }
     }
+
+    var meta = document.getElementsByTagName("meta");
+    var meta_info;
+    for (var y = 0; y < 3; y++) {
+        meta_info += "name: <b>" + meta[y].name + "</b> and content: <b>" + meta[y].content + "</b><br>";
+    }
+    console.log(meta_info)
 })();
