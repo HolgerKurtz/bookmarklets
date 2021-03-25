@@ -1,4 +1,18 @@
-function seoStuff() {
+
+let seoButton = document.getElementById("seoButton");
+
+
+seoButton.addEventListener("click", async () => {
+    let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+
+    chrome.scripting.executeScript({
+        target: { tabId: tab.id },
+        function: addSeoTags,
+    });
+});
+
+function addSeoTags() {
+    console.log("SEO BUTTON CLICKED");
     var meta_info = {};
     let tag = ['title', 'h1', 'h2', 'h3', 'p', 'ul', 'ol', 'li'];
 
@@ -21,4 +35,4 @@ function seoStuff() {
 
     }
     console.log(meta_info);
-}
+};
