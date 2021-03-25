@@ -1,6 +1,6 @@
 {
-    "name": "Getting Started Example",
-    "description": "Build an Extension!",
+    "name": "SEO Stuff",
+    "description": "Helper Tool for SEO",
     "version": "0.1",
     "manifest_version": 3,
     "background": {
