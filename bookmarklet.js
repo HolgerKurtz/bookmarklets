@@ -30,11 +30,11 @@
     var api_url = query + api_key + url + search;
     console.log(api_url);
 
-    fetch(api_url)
-        .then(response => response.json())
-        .then(data => console.log(data));
-
-
+    async function getSistrix() {
+        const result = await fetch(api_url).then(result => result.json())
+        console.log(result);
+    }
+    getSistrix();
 
 
 })();
