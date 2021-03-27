@@ -90,8 +90,14 @@ function addSeoTags() {
         var elts = document.getElementsByTagName(tag[i]);
         var list = [];
         for (var x = 0; x < elts.length; x++) {
-            list.push(elts[x].innerText.trim());
-            elts[x].innerHTML += " (" + tag[i] + ")";
+            try {
+                list.push(elts[x].innerText.trim());
+                elts[x].innerHTML += " (" + tag[i] + ")";
+
+            } catch (error) {
+                console.log(error);
+
+            }
         }
         meta_info[tag[i]] = list;
     }
