@@ -23,6 +23,7 @@ seoButton.addEventListener("click", async () => {
         target: { tabId: tab.id },
         function: sistrix
     });
+
 });
 
 function sistrix() {    // sistrix part
@@ -54,15 +55,18 @@ function sistrix() {    // sistrix part
             kwList = [];
             positionList = [];
             trafficList = [];
+            urlList = [];
             sistrixObject = {};
             for (keyword of sisData) {
                 kwList.push(keyword.kw);
                 positionList.push(keyword.position);
                 trafficList.push(keyword.traffic);
+                urlList.push(keyword.url);
             }
             sistrixObject["keyword"] = kwList;
             sistrixObject["position"] = positionList;
             sistrixObject["traffic"] = trafficList;
+            sistrixObject["url"] = urlList;
             return sistrixObject;
         })
         .then(sistrixObject => {
@@ -109,7 +113,6 @@ function createTable(resultKey) {
         let keys = Object.keys(resultKey);
 
         for (let key of keys) {
-            let tableHead = table.createTHead();
             let th = document.createElement('th');
             let text = document.createTextNode(key);
             th.appendChild(text);
