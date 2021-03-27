@@ -1,5 +1,5 @@
-
-let seoButton = document.getElementById("seoButton");
+let sisButton = document.getElementById("sisButton");
+let tagButton = document.getElementById("tagButton");
 
 chrome.storage.local.get(['key'], function (result) {
     createTable(result.key);
@@ -12,13 +12,8 @@ chrome.tabs.query({ active: true, lastFocusedWindow: true }, tabs => {
     // use `url` here inside the callback because it's asynchronous!
 });
 
-seoButton.addEventListener("click", async () => {
+sisButton.addEventListener("click", async () => {
     let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
-
-    chrome.scripting.executeScript({
-        target: { tabId: tab.id },
-        function: addSeoTags
-    });
     chrome.scripting.executeScript({
         target: { tabId: tab.id },
         function: sistrix
@@ -26,8 +21,18 @@ seoButton.addEventListener("click", async () => {
 
 });
 
-function sistrix() {    // sistrix part
+tagButton.addEventListener("click", async () => {
+    let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
 
+    chrome.scripting.executeScript({
+        target: { tabId: tab.id },
+        function: addSeoTags
+    });
+    showMeta();
+
+});
+
+function sistrix() {    // sistrix part
     // get url and api key
     var api_key = prompt("Your SISTRIX API KEY");
     var url = "&url=" + window.location.href;
@@ -85,7 +90,7 @@ function addSeoTags() {
         var elts = document.getElementsByTagName(tag[i]);
         var list = [];
         for (var x = 0; x < elts.length; x++) {
-            list.push(elts[x].innerText);
+            list.push(elts[x].innerText.trim());
             elts[x].innerHTML += " (" + tag[i] + ")";
         }
         meta_info[tag[i]] = list;
@@ -99,8 +104,24 @@ function addSeoTags() {
         }
 
     }
-    console.log(meta_info);
+    // add Info to page
+    chrome.storage.local.set({ tags: meta_info }, function () {
+    });
+
 };
+
+function showMeta() {
+    chrome.storage.local.get(['tags'], function (result) {
+        let meta_info = result.tags;
+        let pageTitle = document.getElementById("pageTitle");
+        let pageDescription = document.getElementById("pageDescription");
+        console.log(pageTitle, pageDescription);
+        pageTitle.innerHTML = meta_info.title[0];
+        pageDescription.innerText = meta_info.description;
+    });
+
+
+}
 function createTable(resultKey) {
     console.log(resultKey);
     let table = document.querySelector("table");
@@ -108,7 +129,7 @@ function createTable(resultKey) {
     // https://www.valentinog.com/blog/html-table/
 
 
-    function createTableHead() {
+    function createTable() {
         let row = table.insertRow();
         let keys = Object.keys(resultKey);
 
@@ -128,7 +149,7 @@ function createTable(resultKey) {
             row = table.insertRow();
         }
     }
-    createTableHead();
+    createTable();
 
 
 }
