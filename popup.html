@@ -11,13 +11,15 @@
 </head>
 
 <body>
-    <h1>SEO Stuff</h1>
-    <p>… your mom never told ya</p>
-    <p id="hinweis">Aus Gründen: klick <a href="https://cors-anywhere.herokuapp.com/" target="_blank"
-            rel="noopener noreferrer">hier, um die API freizugeben.</a> Und
-        halte den sistrix API Key bereit.</p>
-    <button type="Button" id="sisButton">SISTRIX this page</button>
-    <button type="Button" id="tagButton">Show html-Tags</button>
+    <header>
+        <h1>SEO Stuff</h1>
+        <p>… your mom never told ya</p>
+        <p id="hinweis">Klick' <a href="https://cors-anywhere.herokuapp.com/" target="_blank"
+                rel="noopener noreferrer">hier, um die API freizugeben.</a> Und
+            halte den sistrix API Key bereit.</p>
+        <button type="Button" id="sisButton">Get Keywords</button>
+        <button type="Button" id="tagButton">Show html-Tags</button>
+    </header>
 
     <section>
         <aside>
@@ -28,12 +30,19 @@
             <p id="pageDescription">Beschreibung</p>
         </aside>
     </section>
-    <table></table>
+    <section>
+        <table>
+            <h2>Google Daten von Sistrix</h2>
+        </table>
+    </section>
+
+
     <script src="popup.js"></script>
 </body>
+
 <footer>
     © Holger Kurtz, 2021. Daten werden über die API von SISTRIX bereitgestellt. Aus Platzgründen werden nur die
-    ersten 5 Keywords (nach Position sortiert) angezeigt.
+    ersten 10 Keywords (nach Position sortiert) angezeigt.
 </footer>
 
 </html>
