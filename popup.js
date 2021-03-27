@@ -105,11 +105,11 @@ function createTable(resultKey) {
 
 
     function createTableHead() {
-        let thead = table.createTHead();
-        let row = thead.insertRow();
+        let row = table.insertRow();
         let keys = Object.keys(resultKey);
 
         for (let key of keys) {
+            let tableHead = table.createTHead();
             let th = document.createElement('th');
             let text = document.createTextNode(key);
             th.appendChild(text);
