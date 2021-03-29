@@ -5,6 +5,8 @@ chrome.storage.local.get(['key'], function (result) {
     try {
         showMeta();
         createTable(result.key);
+        let popupHtml = chrome.runtime.getURL('popup.html');
+        window.location.href = popupHtml;
     } catch (error) {
         console.log(error.message);
     }
@@ -124,8 +126,6 @@ function showMeta() {
         pageTitle.innerHTML = meta_info.title[0];
         pageDescription.innerText = meta_info.description;
     });
-
-
 }
 function createTable(resultKey) {
     let table = document.querySelector("table");
@@ -151,6 +151,4 @@ function createTable(resultKey) {
         }
     }
     createTable();
-
-
 }
