@@ -2,8 +2,13 @@ let sisButton = document.getElementById("sisButton");
 let tagButton = document.getElementById("tagButton");
 
 chrome.storage.local.get(['key'], function (result) {
-    createTable(result.key);
-    showMeta();
+    try {
+        showMeta();
+        createTable(result.key);
+    } catch (error) {
+        console.log(error.message);
+    }
+
 });
 
 chrome.tabs.query({ active: true, lastFocusedWindow: true }, tabs => {
@@ -29,7 +34,6 @@ tagButton.addEventListener("click", async () => {
         target: { tabId: tab.id },
         function: addSeoTags
     });
-
 });
 
 function sistrix() {    // sistrix part
@@ -39,7 +43,6 @@ function sistrix() {    // sistrix part
     var query = "https://api.sistrix.com/keyword.domain.seo?api_key=";
     var search = "&date=now&num=10&format=json"
     var api_url = query + api_key + url + search;
-    console.log(api_url);
 
     // handle cors needs klick on url
     let corsUrl = "https://cors-anywhere.herokuapp.com/" + api_url;
@@ -49,14 +52,12 @@ function sistrix() {    // sistrix part
     async function fetchSistrixJSON() {
         const response = await fetch(corsUrl);
         const json = await response.json();
-        console.log(json);
         const sisData = json.answer[0].result;
         return sisData;
     }
 
     fetchSistrixJSON()
         .then(sisData => {
-            console.log(sisData);
             kwList = [];
             positionList = [];
             trafficList = [];
@@ -82,7 +83,6 @@ function sistrix() {    // sistrix part
 }
 
 function addSeoTags() {
-    console.log("SEO BUTTON CLICKED");
     var meta_info = {};
     let tag = ['title', 'h1', 'h2', 'h3', 'p', 'ul', 'ol', 'li'];
 
@@ -121,7 +121,6 @@ function showMeta() {
         let meta_info = result.tags;
         let pageTitle = document.getElementById("pageTitle");
         let pageDescription = document.getElementById("pageDescription");
-        console.log(pageTitle, pageDescription);
         pageTitle.innerHTML = meta_info.title[0];
         pageDescription.innerText = meta_info.description;
     });
@@ -129,11 +128,7 @@ function showMeta() {
 
 }
 function createTable(resultKey) {
-    console.log(resultKey);
     let table = document.querySelector("table");
-    console.log(table);
-    // https://www.valentinog.com/blog/html-table/
-
 
     function createTable() {
         let row = table.insertRow();
